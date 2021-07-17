@@ -1,45 +1,61 @@
 package com.example.controller;
 
-//import com.example.model.Student;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.Locale;
-import java.text.DateFormat;
-import java.util.Date;
-
+import com.example.model.Student;
+import com.example.dao.StudentDao;
 @Controller
 public class studentController {
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    @ResponseBody
-    public String hellow(){
-        return "hey";
-    }
-    /**
-     * Simply selects the home view to render by returning its name.
-     */
-//    @RequestMapping(value = "/", method = RequestMethod.GET)
-//    public String home(Locale locale, Model model) {
-//        System.out.println("Home Page Requested, locale = " + locale);
-//        Date date = new Date();
-//        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//
-//        String formattedDate = dateFormat.format(date);
-//
-//        model.addAttribute("serverTime", formattedDate);
-//
-//        return "home";
-//    }
-//
-//    @RequestMapping(value = "/user", method = RequestMethod.POST)
-//    public String user(@Validated Student student, Model model) {
-//        System.out.println("User Page Requested");
-//        model.addAttribute("userName", student.getUserName());
-//        return "user";
-//    }
+    @Autowired
+    StudentDao dao;//will inject dao from XML file
 
-}
+    /*It displays a form to input data, here "command" is a reserved request attribute
+     *which is used to display object data into form
+     */
+    @RequestMapping("/studentform")
+    public String showform(Model m){
+        m.addAttribute("command", new Student());
+        return "stdform";
+    }
+    /*It saves object into database. The @ModelAttribute puts request data
+     *  into model object. You need to mention RequestMethod.POST method
+     *  because default request is GET*/
+    @RequestMapping(value="/save",method = RequestMethod.POST)
+    public String save(@ModelAttribute("student") Student std){
+        dao.save(std);
+        return "redirect:/viewstd";//will redirect to viewemp request mapping
+    }
+    /* It provides list of employees in model object */
+    @RequestMapping("/viewstd")
+    public String viewemp(Model m){
+        List<Student> list=dao.getStudents();
+        m.addAttribute("list",list);
+        return "viewstd";
+    }
+    /* It displays object data into form for the given id.
+     * The @PathVariable puts URL data into variable.*/
+    @RequestMapping(value="/editstd/{id}")
+    public String edit(@PathVariable int id, Model m){
+        Student std=dao.getStudents(id);
+        m.addAttribute("command",std);
+        return "empeditform";
+    }
+    /* It updates model object. */
+    @RequestMapping(value="/editsave",method = RequestMethod.POST)
+    public String editsave(@ModelAttribute("student") Student std){
+        dao.update(std);
+        return "redirect:/viewstd";
+    }
+    /* It deletes record for the given id in URL and redirects to /viewemp */
+    @RequestMapping(value="/deletestd/{id}",method = RequestMethod.GET)
+    public String delete(@PathVariable int id){
+        dao.delete(id);
+        return "redirect:/viewstd";
+    }
+}  
