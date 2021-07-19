@@ -4,14 +4,14 @@
 <h1>Employees List</h1>
 <table border="2" width="70%" cellpadding="2">
     <tr><th>Id</th><th>Name</th><th>GPA</th><th>Designation</th><th>Stream</th><th>Delete</th></tr>
-    <c:forEach var="emp" items="${list}">
+    <c:forEach var="std" items="${list}">
         <tr>
-            <td>${emp.id}</td>
-            <td>${emp.name}</td>
-            <td>${emp.gpa}</td>
-            <td>${emp.stream}</td>
-            <td><a href="editemp/${emp.id}">Edit</a></td>
-            <td><a href="deleteemp/${emp.id}">Delete</a></td>
+            <td>${std.id}</td>
+            <td>${std.name}</td>
+            <td>${std.gpa}</td>
+            <td>${std.stream}</td>
+            <td><a href="editstd/${std.id}">Edit</a></td>
+            <td><a href="deletestd/${std.id}">Delete</a></td>
         </tr>
     </c:forEach>
 </table>

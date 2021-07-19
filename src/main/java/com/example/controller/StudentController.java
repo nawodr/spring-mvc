@@ -34,7 +34,7 @@ public class StudentController {
     }
     /* It provides list of employees in model object */
     @RequestMapping("/viewstd")
-    public String viewemp(Model m){
+    public String viewstd(Model m){
         List<Student> list=dao.getStudents();
         m.addAttribute("list",list);
         return "viewstd";
@@ -45,7 +45,7 @@ public class StudentController {
     public String edit(@PathVariable int id, Model m){
         Student std=dao.getStdById(id);
         m.addAttribute("command",std);
-        return "empeditform";
+        return "editstd";
     }
     /* It updates model object. */
     @RequestMapping(value="/editsave",method = RequestMethod.POST)
