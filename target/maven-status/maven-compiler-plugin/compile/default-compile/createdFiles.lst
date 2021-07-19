@@ -1,4 +1,4 @@
+com\example\controller\StudentController.class
 com\example\dao\StudentDao.class
 com\example\model\Student.class
 com\example\dao\StudentDao$1.class
-com\example\controller\studentController.class

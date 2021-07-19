@@ -9,12 +9,12 @@
             <td><form:input path="name"  /></td>
         </tr>
         <tr>
-            <td>Salary :</td>
-            <td><form:input path="salary" /></td>
+            <td>GPA :</td>
+            <td><form:input path="gpa" /></td>
         </tr>
         <tr>
-            <td>Designation :</td>
-            <td><form:input path="designation" /></td>
+            <td>Stream :</td>
+            <td><form:input path="stream" /></td>
         </tr>
         <tr>
             <td> </td>

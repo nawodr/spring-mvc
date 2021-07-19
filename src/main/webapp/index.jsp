@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<a href="./views/stdform">Add Student</a>
-<a href="./views/viewstd">View Student</a>
+<a href="stdform">Add Student</a>
+<a href="viewstd">View Student</a>
 </body>
 </html>

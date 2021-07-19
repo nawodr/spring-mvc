@@ -3,8 +3,8 @@ package com.example.model;
 public class Student {
     private int id;
     private String name;
-    private float salary;
-    private String designation;
+    private float gpa;
+    private String stream;
 
     public int getId() {
         return id;
@@ -18,17 +18,17 @@ public class Student {
     public void setName(String name) {
         this.name = name;
     }
-    public float getSalary() {
-        return salary;
+    public float getGpa() {
+        return gpa;
     }
-    public void setSalary(float salary) {
-        this.salary = salary;
+    public void setGpa(float gpa) {
+        this.gpa = gpa;
     }
-    public String getDesignation() {
-        return designation;
+    public String getStream() {
+        return stream;
     }
-    public void setDesignation(String designation) {
-        this.designation = designation;
+    public void setStream(String stream) {
+        this.stream = stream;
     }
 
 }

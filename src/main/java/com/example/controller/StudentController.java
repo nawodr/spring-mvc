@@ -10,15 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.model.Student;
 import com.example.dao.StudentDao;
+
 @Controller
-public class studentController {
+public class StudentController {
     @Autowired
     StudentDao dao;//will inject dao from XML file
 
     /*It displays a form to input data, here "command" is a reserved request attribute
      *which is used to display object data into form
      */
-    @RequestMapping("/studentform")
+    @RequestMapping("/stdform")
     public String showform(Model m){
         m.addAttribute("command", new Student());
         return "stdform";
@@ -42,7 +43,7 @@ public class studentController {
      * The @PathVariable puts URL data into variable.*/
     @RequestMapping(value="/editstd/{id}")
     public String edit(@PathVariable int id, Model m){
-        Student std=dao.getStudents(id);
+        Student std=dao.getStdById(id);
         m.addAttribute("command",std);
         return "empeditform";
     }

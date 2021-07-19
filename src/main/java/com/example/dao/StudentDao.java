@@ -2,23 +2,27 @@ package com.example.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import com.example.model.Student;
+import org.springframework.jdbc.datasource.*;
 
 public class StudentDao {
+
     JdbcTemplate template;
 
     public void setTemplate(JdbcTemplate template) {
         this.template = template;
     }
     public int save(Student p){
-        String sql="insert into students(name,salary,designation) values('"+p.getName()+"',"+p.getSalary()+",'"+p.getDesignation()+"')";
+        String sql="insert into students(name,gpa,stream) values('"+p.getName()+"',"+p.getGpa()+",'"+p.getStream()+"')";
         return template.update(sql);
     }
     public int update(Student p){
-        String sql="update students set name='"+p.getName()+"', salary="+p.getSalary()+",designation='"+p.getDesignation()+"' where id="+p.getId()+"";
+        String sql="update students set name='"+p.getName()+"', gpa="+p.getGpa()+",stream='"+p.getStream()+"' where id="+p.getId()+"";
         return template.update(sql);
     }
     public int delete(int id){
@@ -35,8 +39,8 @@ public class StudentDao {
                 Student e=new Student();
                 e.setId(rs.getInt(1));
                 e.setName(rs.getString(2));
-                e.setSalary(rs.getFloat(3));
-                e.setDesignation(rs.getString(4));
+                e.setGpa(rs.getFloat(3));
+                e.setStream(rs.getString(4));
                 return e;
             }
         });
