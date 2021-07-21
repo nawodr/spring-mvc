@@ -48,8 +48,9 @@ public class StudentController {
         return "editstd";
     }
     /* It updates model object. */
-    @RequestMapping(value="/editsave",method = RequestMethod.POST)
+    @RequestMapping(value="/editstd/save",method = RequestMethod.POST)
     public String editsave(@ModelAttribute("student") Student std){
+        System.out.println(std.getId());
         dao.update(std);
         return "redirect:/viewstd";
     }

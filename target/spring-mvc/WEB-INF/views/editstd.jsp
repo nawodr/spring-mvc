@@ -14,7 +14,7 @@
 </head>
 <body>
 <h1>Update Student</h1>
-<form:form method="post" action="editsave">
+<form:form method="post" action="save">
     <table >
         <tr>
             <td>Name : </td>

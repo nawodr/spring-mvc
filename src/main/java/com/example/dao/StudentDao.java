@@ -22,6 +22,7 @@ public class StudentDao {
         return template.update(sql);
     }
     public int update(Student p){
+        System.out.println(p.getId());
         String sql="update students set name='"+p.getName()+"', gpa="+p.getGpa()+",stream='"+p.getStream()+"' where id="+p.getId()+"";
         return template.update(sql);
     }
